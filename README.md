@@ -1,5 +1,5 @@
 # CancerDataServices-GUID_PullR
-This script will take an already indexed CDS metadata manifest file, with missing GUIDs, and pull each file's respective GUID from indexd and place the in the manifest.
+This script will take an already indexed CDS metadata manifest file, with missing GUIDs, and pull each file's respective GUID from indexd and place them in the manifest.
 
 To run the script on a CDS template, run the following command in a terminal where R is installed for help.
 
