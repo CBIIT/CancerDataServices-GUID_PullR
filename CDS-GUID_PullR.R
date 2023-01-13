@@ -120,12 +120,20 @@ df=df%>%
   mutate(guid=NA)%>%
   select(guid, everything())
 
+pb=txtProgressBar(min=0,max=dim(df)[1],style = 3)
+
 for (x in 1:dim(df)[1]){
-  file_name=df$file_name[x]
+  setTxtProgressBar(pb,x)
+  
   file_size=df$file_size[x]
   file_md5sum=df$md5sum[x]
   
-  contents=suppressWarnings(readLines(curl(url = paste("https://nci-crdc.datacommons.io/index/index?file_name=", file_name,"&size=",file_size,"&md5=",file_md5sum,sep = "")), warn = F))
+  contents=suppressWarnings(readLines(curl(url = paste("https://nci-crdc.datacommons.io/index/index?size=",file_size,"&hash=md5:",file_md5sum,sep = "")), warn = F))
+  
+  #Close readLines function after saving output to variable, this will avoid warnings later.
+  on.exit(close(contents))
+  #insert sleep to prevent spamming the API
+  Sys.sleep(0.1)
 
   contents=stri_split_fixed(str = contents, pattern = '\"did\":\"', n = 2)[[1]][2]
   guid=stri_split_fixed(str = contents, pattern = '\",\"file_name\"', n = 2)[[1]][1]
