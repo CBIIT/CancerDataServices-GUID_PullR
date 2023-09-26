@@ -133,7 +133,7 @@ for (x in 1:dim(df)[1]){
   #Close readLines function after saving output to variable, this will avoid warnings later.
   on.exit(close(contents))
   #insert sleep to prevent spamming the API
-  Sys.sleep(0.1)
+  Sys.sleep(0.25)
 
   contents=stri_split_fixed(str = contents, pattern = '\"did\":\"', n = 2)[[1]][2]
   guid=stri_split_fixed(str = contents, pattern = '\",\"file_name\"', n = 2)[[1]][1]
