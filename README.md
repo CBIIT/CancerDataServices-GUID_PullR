@@ -1,3 +1,8 @@
+> [!WARNING]
+> This repository has been archived and is no longer maintained.  
+> The code is provided for historical reference and may contain unpatched or unknown vulnerabilities.  
+> It should not be used in production systems.  
+
 # CancerDataServices-GUID_PullR
 This script will take an already indexed CDS metadata manifest file, with missing GUIDs, and pull each file's respective GUID from indexd and place them in the manifest.
 
